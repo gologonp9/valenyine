@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Valentine 💘</title>
+
+<!-- خطوط رومانسية -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body{
   margin:0;
@@ -10,21 +14,49 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(45deg,#ff758c,#ff7eb3);
-  font-family:Arial;
+  background:linear-gradient(45deg,#ff9ecf,#ffcce6);
+  font-family:'Poppins', sans-serif;
   text-align:center;
+  overflow:hidden;
 }
 
+/* بالونات */
+.balloon{
+  position:absolute;
+  bottom:-150px;
+  background:pink;
+  border-radius:50%;
+  opacity:0.8;
+  animation:float linear infinite;
+}
+
+@keyframes float{
+  from{ transform:translateY(0); }
+  to{ transform:translateY(-140vh); }
+}
+
+/* قلوب */
+.heart{
+  position:absolute;
+  bottom:-50px;
+  color:#ff4d6d;
+  animation:float linear infinite;
+  opacity:0.9;
+}
+
+/* كرت السؤال */
 .card{
   background:white;
   padding:40px;
   border-radius:20px;
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
   position:relative;
+  z-index:2;
 }
 
 h1{
   color:#ff4d6d;
+  font-weight:600;
 }
 
 button{
@@ -47,23 +79,39 @@ button{
   color:white;
 }
 
-#gif{
-  margin-top:20px;
-  width:300px;
-  border-radius:15px;
-  display:none;
+/* حركة نص */
+.fadeIn{
+  animation:fade 2s ease-in-out infinite alternate;
+}
+
+@keyframes fade{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.05); }
 }
 </style>
 </head>
 
 <body>
 
+<script>
+/* بالونات الصفحة الأولى */
+for(let i=0;i<25;i++){
+  let balloon=document.createElement("div");
+  balloon.className="balloon";
+  let size=Math.random()*40+30;
+  balloon.style.width=size+"px";
+  balloon.style.height=size*1.2+"px";
+  balloon.style.left=Math.random()*100+"%";
+  balloon.style.animationDuration=(6+Math.random()*6)+"s";
+  balloon.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(balloon);
+}
+</script>
+
 <div class="card">
   <h1 id="question">Will you be my Valentine? 💘</h1>
   <button id="yes" onclick="love()">Yes 💕</button>
   <button id="no" onclick="grow()">No 😢</button>
-  <br>
-  <img id="gif" src="https://media.tenor.com/6dBdEsXHESAAAAAm/kiss.webp" alt="Valentine GIF">
 </div>
 
 <script>
@@ -92,10 +140,42 @@ function grow(){
 }
 
 function love(){
-  document.getElementById("question").style.display = "none";
-  document.getElementById("yes").style.display = "none";
-  document.getElementById("no").style.display = "none";
-  document.getElementById("gif").style.display = "block";
+  document.body.innerHTML = `
+    <div style="height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(45deg,#ff9ecf,#ffcce6);overflow:hidden;font-family:'Poppins',sans-serif;">
+      <h1 class="fadeIn" style="color:white;margin-bottom:20px;font-family:'Great Vibes',cursive;font-size:48px;">
+        I knew you would say yes 💖
+      </h1>
+      <img src="https://media.tenor.com/6dBdEsXHESAAAAAm/kiss.webp" style="width:340px;border-radius:20px;margin-bottom:20px;">
+      <h2 class="fadeIn" style="color:white;font-size:28px;font-family:'Great Vibes',cursive;">
+        I love you so much 💗
+      </h2>
+    </div>
+  `;
+
+  /* بالونات كثيفة */
+  for(let i=0;i<40;i++){
+    let balloon=document.createElement("div");
+    balloon.className="balloon";
+    let size=Math.random()*50+30;
+    balloon.style.width=size+"px";
+    balloon.style.height=size*1.2+"px";
+    balloon.style.left=Math.random()*100+"%";
+    balloon.style.animationDuration=(5+Math.random()*5)+"s";
+    balloon.style.animationDelay=Math.random()*5+"s";
+    document.body.appendChild(balloon);
+  }
+
+  /* قلوب تطير */
+  for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+    heart.style.animationDuration=(4+Math.random()*4)+"s";
+    heart.style.animationDelay=Math.random()*5+"s";
+    document.body.appendChild(heart);
+  }
 }
 </script>
 
