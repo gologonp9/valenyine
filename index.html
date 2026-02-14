@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(45deg,#ff758c,#ff7eb3);
+  font-family:Arial;
+  text-align:center;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  position:relative;
+}
+
+h1{
+  color:#ff4d6d;
+}
+
+button{
+  padding:10px 20px;
+  margin:10px;
+  border:none;
+  border-radius:20px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  background:gray;
+  color:white;
+}
+
+#gif{
+  margin-top:20px;
+  width:300px;
+  border-radius:15px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="question">Will you be my Valentine? 💘</h1>
+  <button id="yes" onclick="love()">Yes 💕</button>
+  <button id="no" onclick="grow()">No 😢</button>
+  <br>
+  <img id="gif" src="https://media.tenor.com/6dBdEsXHESAAAAAm/kiss.webp" alt="Valentine GIF">
+</div>
+
+<script>
+let size = 18;
+let messages = [
+  "Are you sure? 🥺",
+  "Really sure? 😭",
+  "Think again 💔",
+  "Don't break my heart 😢",
+  "Last chance 😔",
+  "You can't escape 😈❤️"
+];
+
+let count = 0;
+
+function grow(){
+  if(count < messages.length){
+    document.getElementById("question").innerText = messages[count];
+    size += 15;
+    document.getElementById("yes").style.fontSize = size + "px";
+    document.getElementById("yes").style.padding = (size/2) + "px";
+    count++;
+  }else{
+    document.getElementById("no").style.display="none";
+  }
+}
+
+function love(){
+  document.getElementById("question").style.display = "none";
+  document.getElementById("yes").style.display = "none";
+  document.getElementById("no").style.display = "none";
+  document.getElementById("gif").style.display = "block";
+}
+</script>
+
+</body>
+</html>
